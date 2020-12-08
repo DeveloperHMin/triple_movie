@@ -1,0 +1,63 @@
+@charset "UTF-8";
+@import url(reset.css);
+
+body {
+	font-size: 14px;
+}
+#joinDiv {
+	width: 100%;
+	height: 100vh;
+	margin: 0 auto;
+	background-image: url(/res/img/join_background.jpg);	
+}
+
+.joinContainer {
+	width: 100%;
+	height: 100vh;
+}
+
+.frm {
+	padding-top: 130px;
+	width: 600px;
+	height: 100%;
+	margin:0 auto;
+}
+div h2 {
+	font-size: 30px;
+	text-align: center;
+	padding: 50px 0px;
+}
+
+button {
+	float: right;
+	padding: 9px 7px;
+	color: #eee;
+	border: none;
+	background: #333;
+}
+div input {
+	width: 80%;
+	padding: 10px 20px;
+}
+
+div .submit_btn {
+	width: 100%;
+	padding: 10px 20px;
+	border: none;
+	background: #333;
+	color: #eee;
+}
+.a_tag {
+	font-size: 14px;
+	text-align: center;
+	margin-top: 30px;
+}
+div a {
+	text-decoration: none;
+	color: #333;
+}
+
+a:hover {
+	font-weight: bold;
+	text-decoration: underline;
+}

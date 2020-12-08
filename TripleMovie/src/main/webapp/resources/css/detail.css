@@ -1,0 +1,177 @@
+@charset "UTF-8";
+@import url(reset.css);
+
+body{
+	background: #3e3e3e;
+	color: #eee;
+}
+detail_body {
+	width: 100%;
+	height: 100%;
+}
+
+hr {
+	background: #eee;
+}
+.detail_container{
+	background: #3e3e3e;
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+	margin: 0 auto;
+	width: 950px;
+	height: 100%;
+	position: relative; 
+	overflow: auto;
+}
+.detail_container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+
+.font_bold {
+	padding-right: 15px;
+	font-weight: bold;
+}
+.detail_sub_container {
+  margin-top: 50px;
+}
+.detail_main_content {
+	width: 100%;
+	height: 420px;
+}
+.detail_left_section {
+  text-align: center;
+  float: left;
+  width: 300px;
+  height: 380px;
+  border: 2px solid #3e3e3e;
+}
+
+.detail_left_section img{
+  width: 99%;
+  height: 100%;
+}
+
+.detail_right_section {
+  float: right;
+  width: 600px;
+  height: 380px;
+}
+
+.detail_right_section .detail_info {
+  padding: 10px 0px;
+  text-align: left;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 50%;
+}
+
+.detail_right_section h1 {
+	font-size: 2em;
+}
+
+.detail_right_section h1 span {
+  padding-left: 10px;
+  font-size: 14px;
+}
+
+.detail_right_section div{
+  margin-bottom: 15px;
+}
+
+.detail_content {
+ 	font-size: 0.8em;
+}
+
+.detail_content_container {
+ 	height: 800px;
+}
+
+.detail_comment_container h1 {
+	background: #6e6e6e;
+	padding: 10px 0;
+}
+.detail_comment_container {
+	text-align: center;
+	width: 100%;
+	height: 150px;
+}
+.comment_table {
+	border: 1px solid #3e3e3e;
+	margin: 0 auto;
+	text-align: center;
+	width: 100%;
+}
+.comment_table tr {
+	text-align: center;
+}
+.comment_textarea {
+	width: 90%;
+}
+.comment_btn {
+	width: 10%;
+	background: #4f4f4f;
+	
+}
+.comment_table textarea{
+	padding-top: 15px;
+	padding-left: 15px;
+	vertical-align: middle;
+	background: #4f4f4f;
+	width: 100%;
+	height: 100%;
+	border: none;
+	color: white;
+}
+
+.comment_table textarea:focus{
+	outline: 0;
+}
+.comment_table textarea::placeholder {
+	color: white;
+}
+comment_table tr td {
+	background: #4f4f4f;
+}
+.comment_table a {
+	color: white;
+}
+.comment_content {	
+	border-radius: 20px;
+	vertical-align: middle;
+	width: 100%;
+	height: 80px;
+	margin-bottom: 10px;
+}
+.comment_content tr, td{	
+	background: #333333;
+	text-align: center;
+	vertical-align: middle;
+}
+.comment_nick_td {
+	width: 8%;
+}
+.comment_nick {
+	width: 8%;
+}
+.comment_ctnt {
+	width: 68%;
+}
+.comment_favorite_td{
+	width: 8%;
+}
+.comment_favorite{
+	width: 8%;
+}
+
+#youTubePlayer1 {
+width: 300px;
+height: 250px;
+position: relative;
+width: 80%;
+}
+
+#youTubePlayer1 iframe {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}

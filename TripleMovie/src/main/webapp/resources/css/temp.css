@@ -1,0 +1,101 @@
+@charset "UTF-8";
+
+@import 'https://fonts.googleapis.com/css?family=Raleway';
+@import 'reset.css';
+
+
+html, body
+{
+    /* height: 100vh;
+    margin: 0px;
+    padding: 0px; */
+    font-family: '나눔바른고딕';
+    overflow: hidden;
+}
+
+
+.temp_container
+{
+    display: grid;
+    grid-template-rows: 4% 9% 82% 5%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* header */
+header
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+	text-align: center;
+    background: #272727;
+    width: 100%;
+    height: 100%;
+}
+
+header img {
+    width: 140px;
+    height: 70px;
+}
+
+div .container
+{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+        ". . menubox"
+    ;
+    font-size: 10px;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+}
+
+.top_menubox
+{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    grid-area: menubox;
+    justify-self: flex-end;
+    margin-right: 5%;
+}
+
+div.container a
+{
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    margin: 0px 10px;
+    position: relative;
+    z-index: 0;
+    cursor: pointer;
+}
+
+.categorycolor
+{
+    background: #272727;
+}
+
+main {
+    width: 100%;
+    height: 100%;
+}
+
+/* footer */
+footer 
+{
+    width: 100%;
+    background-color: #272727;
+    text-align: center;
+    line-height: 5vh;
+    height: 100%;
+}
+footer span
+{
+    font-size: 10px;
+    color: white;
+}

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.triplemovie.pjt.movie.MovieMapper">
+	
+	<!-- 관이랑 시간이랑 영화 insert -->
+	<insert id="insCinema">
+		insert into t_cinema(movieSeq, movieId, room, s_dt, e_dt, r_dt, movieNm)
+		values
+		(#{movieSeq}, #{movieId}, #{room}, #{s_dt}, #{e_dt}, #{r_dt}, #{movieNm})
+	</insert>
+	
+	<!-- 댓글 insert -->
+	<insert id="insCmt" parameterType="CmtVO">
+		INSERT INTO t_cmt
+		(movieId, movieSeq, i_user, ctnt)
+		VALUES
+		(#{movieId}, #{movieSeq}, #{i_user}, #{ctnt})
+	</insert>
+	
+	<!-- 댓글에 좋아요 insert  -->
+	<insert id="insFavorite">
+		INSERT INTO t_cmt_favorite
+		(i_cmt, i_user, seq)
+		SELECT
+		#{i_cmt},#{i_user},ifnull(MAX(seq),0)+1 
+		FROM t_cmt_favorite;
+	</insert>
+	
+	<!-- 유저 예매 정보 insert -->
+	<select id="insTicketing" resultType="Integer">
+		INSERT INTO t_user_ticket
+		(i_user,i_movie, adultCnt, studentCnt)
+		VALUES
+		(#{i_user},#{i_movie}, #{adultCnt}, #{studentCnt})
+		RETURNING i_ticket
+	</select>
+	
+	<!-- 유저 예매좌석 정보 insert -->
+	<insert id="insSeats">
+		INSERT INTO t_user_seats
+		(i_ticket,seat,seq)
+		SELECT
+		#{i_ticket}, #{seat},ifnull(MAX(seq),0)+1
+		FROM t_user_seats
+	</insert>
+	
+	<!-- 예매하면 총 좌석 갯수 update -->
+	<update id="updTotalSeat">
+		UPDATE t_cinema
+		SET totalSeat = 
+		(SELECT totalSeat FROM t_cinema WHERE i_movie = #{i_movie}) - #{seatCnt}
+		WHERE i_movie = #{i_movie};
+	</update>
+	
+	<!-- 댓글정보 select -->
+	<select id="selCmt" resultType="CmtDMI">
+		SELECT DISTINCT A.i_cmt, A.ctnt, B.nick_nm,
+		(SELECT COUNT(i_cmt) FROM t_cmt_favorite WHERE i_cmt = A.i_cmt) AS ctnt_cnt
+		FROM t_cmt A
+		LEFT JOIN t_user B
+		ON B.i_user = A.i_user
+		LEFT JOIN t_cmt_favorite C
+		ON C.i_cmt = A.i_cmt
+		WHERE A.movieId = #{movieId} AND A.movieSeq = #{movieSeq}
+		ORDER BY ctnt_cnt DESC
+	</select>
+	
+	<!-- 내가 좋아요 한 댓글 조회 -->
+	<select id="selCmtFavorite" resultType="CmtVO">
+		SELECT B.i_cmt, B.seq, B.i_user FROM t_cmt A
+		LEFT JOIN t_cmt_favorite B
+		ON A.i_cmt = B.i_cmt
+		WHERE A.movieId = #{movieId} and B.i_user = #{i_user} and A.movieSeq = #{movieSeq}
+	</select>
+	
+	
+	<!-- 그 관에 맨 마지막 영화 끝나는 시간 select -->
+	<select id="selRoomTime" resultType="CinemaVO">
+		SELECT max(e_dt) AS e_dt FROM t_cinema
+		<choose>
+			<when test="room > 0">
+			WHERE room = #{room} AND r_dt = #{r_dt}
+			</when>
+			<otherwise>
+			WHERE r_dt = #{r_dt}
+			</otherwise>
+		</choose>		
+	</select>
+	
+	<!-- 예매할 수 있는 영화 날짜 select -->
+	<select id="selR_dt" resultType="CinemaVO">
+		SELECT r_dt FROM t_cinema
+		WHERE r_dt >= CURDATE()
+		GROUP BY r_dt
+	</select>
+	
+	<select id="selMovieNm" resultType="CinemaVO">
+		SELECT DISTINCT movieNm,movieSeq,movieId FROM t_cinema WHERE r_dt = #{r_dt} ORDER BY movieNm
+	</select>
+	
+	<!-- 영화 시간 select -->
+	<select id="selTime" resultType="CinemaVO">
+		SELECT s_dt, e_dt, i_movie FROM t_cinema
+		WHERE r_dt = #{r_dt} AND room = #{room} AND movieNm = #{movieNm}  AND totalSeat > 0 
+	</select>
+	
+	<select id="selRoom" resultType="CinemaVO">
+		SELECT DISTINCT room FROM t_cinema
+		WHERE movieId= #{movieId} AND movieSeq = #{movieSeq} AND r_dt = #{r_dt} AND totalSeat > 0 ORDER BY room
+	</select>
+	
+	
+	<!-- 좌석 select -->	
+	<select id="selSeats" resultType="UserTicketVO">
+		SELECT A.seat FROM t_user_seats A
+		LEFT JOIN t_user_ticket B
+		ON B.i_ticket = A.i_ticket
+		WHERE B.i_movie = #{i_movie}
+	</select>	
+	
+	<!-- 좋아요 delete -->
+	<delete id="delFavorite">
+		DELETE FROM t_cmt_favorite WHERE seq = #{seq} AND i_user = #{i_user}
+	</delete>
+</mapper>

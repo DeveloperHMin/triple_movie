@@ -1,0 +1,88 @@
+@charset "UTF-8";
+
+body {
+	background: #4e4e4e;
+}
+.ticket_container {
+	background: #4e4e4e;
+	margin: 0 auto;
+	width: 1200px;
+	height: 80%;
+	margin-top: 50px;
+}
+
+.cinema_select, .time_select, .day_select {
+	background: #fff;
+	position: relative;
+	height: 550px;
+	float: left; 
+	width: 23%;
+}
+.movie_select {
+	background: #fff;
+	position: relative;
+	height: 550px;
+	float: left; 
+	width: 30%;
+}
+
+.cinema_select, .time_select, .movie_select {
+	border-left:0.1px solid #cecece;
+}
+
+
+.day_div, .movie_div, .cinema_div, .time_div, .title{
+	display: table;
+}
+
+.day_div, .movie_div, .cinema_div {
+	cursor: pointer;
+	text-align: center;
+	width: 100%;
+	height: 42px;
+	line-height: 42px;
+}
+
+.time_div div {
+	cursor: pointer;
+	width:276px;
+	margin: 0 auto;
+	height: 42px;
+	line-height: 42px;
+}
+
+.time_div div span {
+	width:276px;
+	text-align: center;
+}
+
+span{
+	width:100%;
+	height: 100%;
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
+
+
+.title {
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	background: #111111;
+	color: #eee;
+}
+
+.ticketing_submit input{
+	cursor: pointer;
+	margin-top: 10px;
+	width: 99%;
+	height: 50px;
+	border: none;
+	background: #770000;
+	color: #eee;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	
+}

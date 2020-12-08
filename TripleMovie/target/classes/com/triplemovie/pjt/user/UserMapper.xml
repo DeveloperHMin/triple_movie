@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.triplemovie.pjt.user.UserMapper">
+	<insert id="insUser" parameterType="UserVO">
+		INSERT INTO t_user
+		(user_id, user_pw, salt, nick_nm, age, gender)
+		VALUES
+		(#{user_id}, #{user_pw}, #{salt}, #{nick_nm}, #{age}, #{gender})
+	</insert>
+	<select id="selUser" parameterType="UserVO" resultType="UserVO">
+		SELECT i_user, user_id, user_pw, salt, nick_nm, age, gender
+		FROM t_user
+		WHERE 
+		<if test="user_id != null and user_id != ''"> user_id = #{user_id}</if>
+		<if test="nick_nm != null and nick_nm != ''"> nick_nm = #{nick_nm}</if>
+	</select> 
+	<select id="selTicketInfo" resultType="UserTicketVO">
+		SELECT A.i_ticket, B.r_dt, B.s_dt, B.e_dt, B.room, B.movieNm, A.adultCnt, A.studentCnt
+		FROM t_user_ticket A
+		LEFT JOIN t_cinema B
+		ON B.i_movie = A.i_movie
+		WHERE i_user = #{i_user}
+	</select>
+	<select id="selSeatsInfo" resultType="String">
+		SELECT seat FROM t_user_seats WHERE i_ticket = #{i_ticket}
+	</select>
+	<delete id="delSeats">
+		DELETE FROM t_user_seats WHERE i_ticket = #{i_ticket}
+	</delete>
+	<delete id="delTicket">
+		DELETE FROM t_user_ticket WHERE i_ticket = #{i_ticket} and i_user=#{i_user}
+	</delete>
+</mapper>

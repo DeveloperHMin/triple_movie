@@ -1,0 +1,74 @@
+@charset "UTF-8";
+@import url("reset.css");
+
+
+body {
+	background: #333333;
+}
+.mypage_container {
+	background: #333333;
+	margin: 0 auto;
+	width: 1000px;
+	height: 100%;
+	padding-top: 20px;
+}
+
+.myticket {
+	float:left;
+	margin-right: 10px;
+	background: #eee;
+	margin-top: 20px;
+	border-radius: 10px;
+	width: 23%;
+	height: 300px;
+	text-align: center;
+}
+
+.ticket_info {
+	margin: 0 auto;
+	width: 90%;
+	height: 100%;
+}
+
+.ticket_info h1 {
+	font-weight: bold;
+	color: #333333;
+	width: 100%;
+	padding: 5px 0px;
+	font-size: 20px;
+}
+
+.ticket_info span {
+	color: #980000;
+	margin-bottom: 10px;
+}
+
+.ticket_info .ticket_time {
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.ticket_info .ticket_cancel {
+	vertical-align: middle;
+}
+
+
+.ticket_info .ticket_title {
+	vertical-align: middle;	
+	height: 100px;
+}
+
+.ticket_info .ticket_cont {
+	vertical-align: middle;	
+}
+.ticket_cont td{
+	vertical-align: middle;
+}
+.value_cell {
+	vertical-align: middle;
+	height: 30px;
+		
+}
+.ticket_human {
+	font-size: 12px;
+}
